@@ -3,4 +3,4 @@
 while True:
     barcode = input("Scan barcode: ")
 
-    print "Barcode scanned asdfad: " + barcode
+    print "Barcode scanned asdfaddf: " + barcode
