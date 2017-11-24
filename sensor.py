@@ -5,15 +5,15 @@ gpio.setmode(gpio.BCM)
 
 trig=13
 echo=19
-led=23
-
+led1=23
+led2=24
 print("start")
 
 gpio.setup(trig, gpio.OUT)
 gpio.setup(echo, gpio.IN)
-gpio.setup(led, gpio.OUT)
+gpio.setup(led1, gpio.OUT)
+gpio.setup(led2, gpio.OUT)
 
-gpio.output(led, True)
 
 try :
     while True :
@@ -37,9 +37,11 @@ try :
 
         #test for led
         if distance < 3 :
-            gpio.output(led, False)
+            gpio.output(led1, False)
+            gpio.output(led2, False)
             time.sleep(3)
-            gpio.output(led, True)
+            gpio.output(led1, True)
+            gpio.output(led2, True)
             
 
 except :

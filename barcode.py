@@ -2,7 +2,7 @@
 import pymysql
 
 #DB connection
-conn = pymysql.connect(host='ajy.iptime.org', port=3306, user='ajy0714', password='940714a', db='capstone')
+conn = pymysql.connect(host='192.168.0.32', port=3306, user='root', password='ehcl5397', db='capstone')
 
 #Download DB from server to RaspberryPi
 cur=conn.cursor(pymysql.cursors.DictCursor)
