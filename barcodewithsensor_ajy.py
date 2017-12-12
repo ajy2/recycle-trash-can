@@ -49,6 +49,7 @@ while True:
             material = row['material']
             name = row['name']
             point = int(row['point'])
+            count = int(row['count'])
 
             if material == 'paper' :
                 gpio.output(led0, True)
@@ -92,6 +93,7 @@ while True:
 
                 renew_point=point+user_point;
 
+
                 curs=conn.cursor()
                 if distance < 8 :
                     if material == 'paper' :
@@ -99,6 +101,8 @@ while True:
                         curs.execute("""insert into log(userid, type, material, name, date, point) values ('%s', '%s', '%s', '%s', now(), %s)"""
                                         % (userid, prod_type, material, name, point))
                         curs.execute("""update user set point = %s where userid='%s'""" % (renew_point, userid))
+                        count=count+1
+                        curs.execute("""update product set count = %s where barcode='%s'""" % (count, barcode))
                         conn.commit()
                         break
                 if distance1 < 8 :
@@ -107,6 +111,8 @@ while True:
                         curs.execute("""insert into log(userid, type, material, name, date, point) values ('%s', '%s', '%s', '%s', now(), %s)"""
                                         % (userid, prod_type, material, name, point))
                         curs.execute("""update user set point = %s where userid='%s'""" % (renew_point, userid))
+                        count=count+1
+                        curs.execute("""update product set count = %s where barcode='%s'""" % (count, barcode))
                         conn.commit()
                         break
 
