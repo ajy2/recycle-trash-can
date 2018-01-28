@@ -37,7 +37,7 @@ public class manageProduct extends HttpServlet {
 
 	String saveFolder="\\img";
 	int maxSize=1024*1024*5;
-	
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -49,18 +49,18 @@ public class manageProduct extends HttpServlet {
 		String prodCMD=(String)multi.getParameter("ProdManageButton");
 		String[] array=prodCMD.split("=");
 		String code="";
-		if(array[0].equals("deleteProduct")||array[0].equals("modifyProduct")) {
+		if(array[0].equals("deleteProduct")) {
 			prodCMD=array[0];
 			code=array[1];
 		}else {
 			code=(String)multi.getParameter("barcode");
 		}
-		
+
 		String dbURL="jdbc:mysql://localhost:3306/capstone";
 		//String dbURL = "jdbc:mysql://ajy.iptime.org:3306/capstone";
 		String dbUser="root";
 		String dbPass="940714a";
-		
+
 		if("insertProduct".equals(prodCMD)){
 			insertProduct(multi, request, response, code, dbURL, dbUser, dbPass);
 		}else if("deleteProduct".equals(prodCMD)){
@@ -71,7 +71,6 @@ public class manageProduct extends HttpServlet {
 	}
 
 	private void insertProduct(MultipartRequest multi, HttpServletRequest request, HttpServletResponse response, String code, String dbURL, String dbUser, String dbPass) {
-		String query = "";
 		int point = 0;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -82,7 +81,7 @@ public class manageProduct extends HttpServlet {
 			String brand=(String)multi.getParameter("brand");
 			String material=(String)multi.getParameter("material");
 			String type=(String)multi.getParameter("type");
-			String image=(String)multi.getOriginalFileName("filename1");
+			String image=(String)multi.getOriginalFileName("OrignImage");
 
 			if("".equals(barcode) || "".equals(name) || "".equals(brand) || "".equals(material) || "".equals(type)) {
 				request.setAttribute("barcode", barcode);
@@ -116,7 +115,7 @@ public class manageProduct extends HttpServlet {
 					point=1;
 				}
 
-				query="insert into product (barcode, name, brand, material, type, point, count, image) values (?, ?, ?, ?, ?, ?, 0, ?)";
+				String query="insert into product (barcode, name, brand, material, type, point, count, image) values (?, ?, ?, ?, ?, ?, 0, ?)";
 				PreparedStatement pstmt=con.prepareStatement(query);
 				pstmt.setString(1, barcode);
 				pstmt.setString(2, name);
@@ -138,14 +137,12 @@ public class manageProduct extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void deleteProduct(MultipartRequest multi, HttpServletRequest request, HttpServletResponse response, String code, String dbURL, String dbUser, String dbPass) {
-		String query="";
-		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection(dbURL, dbUser, dbPass);
-			query="delete from product where barcode=?;";
+			String query="delete from product where barcode=?;";
 			PreparedStatement pstmt=con.prepareStatement(query);
 			pstmt.setString(1, code);
 			
@@ -156,12 +153,53 @@ public class manageProduct extends HttpServlet {
 			}
 			con.close();
 			pstmt.close();
-			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void modifyProduct(MultipartRequest multi, HttpServletRequest request, HttpServletResponse response, String code, String dbURL, String dbUser, String dbPass) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection(dbURL, dbUser, dbPass);
+			String query="update product set name=?, brand=?, material=?, type=?, count=?, point=?, image=? where barcode=?";
+			PreparedStatement pstmt=con.prepareStatement(query);
+
+			String barcode=code;
+			String name=(String)multi.getParameter("name");
+			String brand=(String)multi.getParameter("brand");
+			String material=(String)multi.getParameter("material");
+			String type=(String)multi.getParameter("type");
+			int count=Integer.parseInt(multi.getParameter("count"));
+			int point=Integer.parseInt(multi.getParameter("point"));
+			String image="";
+			String RenewImage=(String)multi.getOriginalFileName("RenewImage");
+			String OriginImage=(String)multi.getParameter("OriginImage");
+
+			if(RenewImage==null) {
+				image=OriginImage;
+			}else{
+				image=saveFolder+"\\"+RenewImage;
+			}
+			
+			pstmt.setString(1, name);
+			pstmt.setString(2, brand);
+			pstmt.setString(3, material);
+			pstmt.setString(4, type);
+			pstmt.setInt(5, count);
+			pstmt.setInt(6, point);
+			pstmt.setString(7, image);
+			pstmt.setString(8, barcode);
+
+			int resultCnt=pstmt.executeUpdate();
+			if(resultCnt > 0) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("productList.jsp");
+				dispatcher.forward(request, response);
+			}
+			con.close();
+			pstmt.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 }

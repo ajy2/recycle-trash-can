@@ -33,7 +33,7 @@
 													<option value="styrofoam">styrofoam</option>
 													<option value="vinyl">vinyl</option></td></tr>
 					<tr><td>type : </td><td><input type='text' name="type" value="<%=type%>"/></td></tr>
-					<tr><td>image : </td><td><input type='file' name="filename1"/>
+					<tr><td>image : </td><td><input type='file' name="OrignImage"/>
 											 <br/>제품 사진은 5MB미만만 첨부가능합니다.</td></tr>
 					<input type='hidden' name="count" value=0/>
 				</table>

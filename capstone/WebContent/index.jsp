@@ -11,7 +11,7 @@
 </head>
 <body>
 	<%if(userid!=null){%>
-	<h3><%=userid%>님 환영합니다!></h3>
+	<h3><%=userid%>님 환영합니다!</h3>
 		<input type="button" value="로그아웃" onclick="location.href='sessionLogout.jsp'" />
 		<input type="button" value="회원정보수정" onclick="window.open('userInfoMgmt.jsp', 'userInfoMgmt', 'width=500, height=350')" />
 		<%if("admin".equals(userid)){%>

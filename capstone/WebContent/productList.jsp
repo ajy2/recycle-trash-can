@@ -8,11 +8,12 @@
 	session.setAttribute("passwd", passwd);
 	session.setAttribute("email", email);%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>제품 정보 리스트</title>
+
 </head>
 <body>
 	<form action = "manageProduct" method="post" enctype="multipart/form-data">
@@ -46,8 +47,7 @@
 								<td><%=rs.getInt(7)%></td>
 								<td><img src="<%= rs.getString(8) %>" width='100px' height='100px'></td><!-- http://thinkerodeng.tistory.com/198 -->
 								<td width="60px">
-									<input type='hidden' name="barcode" value="<%=rs.getString(1)%>">
-									<button name="ProdManageButton" type="submit" value="modifyProduct">수정</button>/<button name="ProdManageButton" type="submit" value="deleteProduct=<%=rs.getString(1)%>">삭제</button>
+									<button type="submit" name="ProdManageButton" formaction="productModify.jsp?barcode=<%=rs.getString(1)%>">수정</button>/<button name="ProdManageButton" type="submit" value="deleteProduct=<%=rs.getString(1)%>">삭제</button>
 		                        </td>
 							</tr>
 			<%			}

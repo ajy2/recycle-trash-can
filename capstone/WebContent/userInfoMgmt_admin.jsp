@@ -10,12 +10,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-	String requestedUser = request.getParameter("userid");
+<%  String requestedUser = request.getParameter("userid");
 	if("admin".equals(userid)){
 		user = userDB.showAUser(requestedUser);
-	}
-%>
+	}%>
 <%if(user != null){ %>
 	<h2><%=userid %>회원의 정보수정 </h2><input type="button" value="홈으로 이동" onclick="location.href='foodList.jsp'"/>
 	</table>
