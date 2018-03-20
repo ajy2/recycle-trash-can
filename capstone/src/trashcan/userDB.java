@@ -21,7 +21,7 @@ public class userDB {
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
-			String query = "insert into user(userid, passwd, email, salt, point)"+ "values(?, ?, ?, ?, ?)";
+			String query = "insert into user(userid, passwd, salt, email, number, point, can, plastic, paper, bottle, styrofoam, vinyl)"+ "values(?, ?, ?, ?, ?, ?, 0, 0, 0, 0, 0, 0)";
 			
 			try{
 				salt = passwdUtil.getSalt();
@@ -35,9 +35,10 @@ public class userDB {
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, user.getUserid());
 			stmt.setString(2, hashedPasswd);
-			stmt.setString(3, user.getEmail());
-			stmt.setString(4, salt);
-			stmt.setInt(5, point);
+			stmt.setString(3, salt);
+			stmt.setString(4, user.getEmail());
+			stmt.setString(5, user.getNumber());
+			stmt.setInt(6, point);
 			
 			int i = stmt.executeUpdate();
 			if(i > 0){
@@ -195,7 +196,6 @@ public class userDB {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try{
-			
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
 			stmt = conn.prepareStatement("select * from user where userid = ?");

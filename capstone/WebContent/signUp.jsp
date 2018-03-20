@@ -6,8 +6,9 @@ String result = null;
 if(agree.equals("yes")){
 	User user = new User();
 	user.setUserid((String)session.getAttribute("userid"));
-	user.setEmail((String)session.getAttribute("email"));
 	user.setPasswd((String)session.getAttribute("passwd"));
+	user.setEmail((String)session.getAttribute("email"));
+	user.setNumber((String)session.getAttribute("number"));
 	user.setPoint(0);
 	
 	int no = userDB.checkUserAvail(user.getUserid(), user.getEmail());
@@ -30,5 +31,4 @@ if(agree.equals("yes")){
 <%return;
 }
 response.sendRedirect("index.jsp");
-
 %>

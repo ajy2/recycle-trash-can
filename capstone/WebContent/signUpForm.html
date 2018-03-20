@@ -1,21 +1,47 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!doctype html>
+<html lang="en">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-		<title>È¸¿ø°¡ÀÔ</title>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+	    <!-- <link rel="icon" href="../../../../favicon.ico"> -->
+	
+	    <title>Signin for recycle</title>
+	
+	    <!-- Bootstrap core CSS -->
+	    <link href="./css/bootstrap.min.css" rel="stylesheet">
+	
+	    <!-- Custom styles for this template -->
+	    <link href="./css/signin.css" rel="stylesheet">
 	</head>
-	<body>
-		<form action="signUpAgreement.jsp" method="post">
-			<fieldset>
-				<legend class="legend_text"> ´ÙÀ½ÀÇ Á¤º¸¸¦ ÀÔ·ÂÇÏ¼¼¿ä.</legend>
-				<div><span class="star">*</span><label> User ID : </label>
-					<input type="text" name="userid" required="required"/></div>
-				<div><span class="star">*</span><label>  Password: </label>
-					<input type="password" name="passwd" required="required"/></div>
-				<div><span class="star">*</span><label>  Email: </label>
-					<input type="text" name="email"/></div>
-				<input type="submit" value="È¸¿ø°¡ÀÔ"/>
-			</fieldset>
-		</form>
-		</body>
+
+	<body class="text-center">
+		<form class="form-signin" name="signup" action="signUpAgreement.jsp" method="post">
+			<input type="text" name="userid" class="form-control" placeholder="User ID" required autofocus>
+			<input type="password" id="inputPassword" name="passwd" class="form-control" placeholder="Password" required>
+			<input type="password" id="inputPassword2" name="passwd2" class="form-control" placeholder="Please write password again for check" required>
+			<input type="email" name="email" class="form-control" placeholder="email" required>
+			<input type="text" name="nubmer" class="form-control" placeholder="number" required>
+
+			<button class="btn btn-lg btn-primary btn-block" onclick="passwd_chk();">Sign Up</button>
+			<p class="mt-5 mb-3 text-muted">&copy; 2018 This site is based on Bootstrap</p>
+	    </form>
+	</body>
+	
+	<script>
+		function passwd_chk(){
+			var passwd=document.getElementsByName("passwd")[0].value;
+			var passwd2=document.getElementsByName("passwd2")[0].value;
+			
+			if(passwd == passwd2){
+				alert("ì¼ì¹˜í•©ë‹ˆë‹¤.");
+				document.signup.submit();
+			}
+			else{
+				alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ë‹¤ì‹œ í™•ì¸í•´ì£¼ì„¸ìš”");
+				document.getElementsByName("inputPassword").focus();
+			}
+		}
+	</script>
 </html>

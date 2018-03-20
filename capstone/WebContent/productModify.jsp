@@ -40,26 +40,25 @@
 		<head>
 			<meta http-equipv="Content-Type" content="text/html; charset=UTF-8">
 			<title>품목 수정</title>
-			
 			<style>
-			input.upload {
- 			  width: 100px;
-			  height: 30px;
-			  border-color: transparent;
-			  cursor: pointer;
-			  opacity: 0;       /*input type="file" tag 투명하게 처리*/
-			  position: relative;
-			}
-			button.replace {    /*button tag 에 원하는 스타일 적용*/
-			  position: absolute;
-			  width: 100px;
-			  height: 30px;
-			  border-radius: 3px;
-			  font-weight: 600;
-			  border-color: transparent;
-			  font-size: 10px;
-			  cursor: pointer;
-			}
+					input.upload {
+		 			  width: 100px;
+					  height: 30px;
+					  border-color: transparent;
+					  cursor: pointer;
+					  opacity: 0;       /*input type="file" tag 투명하게 처리*/
+					  position: relative;
+					}
+					button.replace {    /*button tag 에 원하는 스타일 적용*/
+					  position: absolute;
+					  width: 100px;
+					  height: 30px;
+					  border-radius: 3px;
+					  font-weight: 600;
+					  border-color: transparent;
+					  font-size: 10px;
+					  cursor: pointer;
+					}
 			</style>
 		</head>
 		<body>
@@ -68,7 +67,7 @@
 					<tr><td>barcode : </td><td><input type='text' name="barcode" value="<%=barcode%>" autofocus/></td></tr>
 					<tr><td>name : </td><td><input type='text' name="name" value="<%=name%>"/></td></tr>
 					<tr><td>brand : </td><td><input type='text' name="brand" value="<%=brand%>"/></td></tr>
-					<tr><td>material : </td><td><select name="material" value="<%=material%>">
+					<tr><td>material : </td><td><select name="material"><!-- https://okky.kr/article/69936 -->
 													<option value="can">can</option>
 													<option value="plastic">plastic</option>
 													<option value="paper">paper</option>

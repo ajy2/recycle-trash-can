@@ -7,6 +7,7 @@ public class User implements Serializable{
 	private String passwd;
 	private String email;
 	private String lastlogin;
+	private String number;
 	private int point;
 	
 	public User(){		
@@ -51,5 +52,12 @@ public class User implements Serializable{
 	public String getlastlogin() {
 		return lastlogin;
 	}
-
+	
+	public void setNumber(String number) {
+		this.number=number;
+	}
+	
+	public String getNumber() {
+		return number;
+	}
 }
