@@ -1,5 +1,26 @@
 body {
-  font-size: .875rem;
+  font-size: 9pt;
+}
+
+#product{
+	width:100%;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	display:block;
+}
+
+#time{
+	width:30%;
+	white-space:nowrap;
+	text-align:center;
+	white-space: nowrap;
+}
+
+#point{
+	width:30%;
+	text-align:center;
+	white-space: nowrap;
 }
 
 .feather {

@@ -1470,6 +1470,7 @@ pre code {
 	}
 }
 .table {
+	table-layout:fixed;
 	width:100%;
 	max-width:100%;
 	margin-bottom:1rem;
@@ -1482,7 +1483,8 @@ pre code {
 }
 .table thead th {
 	vertical-align:bottom;
-	border-bottom:2px solid #dee2e6
+	border-bottom:2px solid #dee2e6;
+	text-align:center;
 }
 .table tbody+tbody {
 	border-top:2px solid #dee2e6
@@ -1491,7 +1493,7 @@ pre code {
 	background-color:#fff
 }
 .table-sm td,.table-sm th {
-	padding:.3rem
+	padding:.3rem;
 }
 .table-bordered {
 	border:1px solid #dee2e6

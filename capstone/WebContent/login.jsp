@@ -15,7 +15,7 @@
 				out.print("true");
 			}else{
 				session.setAttribute("userid", userid);
-				response.sendRedirect("index.jsp");
+				response.sendRedirect("index_mobile.jsp");
 			}
 		}else{
 			if("mobile".equals(device)){

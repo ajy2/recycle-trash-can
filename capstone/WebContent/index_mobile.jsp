@@ -31,7 +31,6 @@
 </head>
 
 <body>
-
 	<%if(userid!=null){%>
 	<div id="bcTarget" style="position:fixed; top:0px; right:0px; z-index:1021;"></div>
 	<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
@@ -88,7 +87,7 @@
 		 -->
 			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-				<h1 class="h2">쓰레기 분리수거 현황</h1>
+				<h1 class="h2">분리수거 현황</h1>
 				<div class="btn-toolbar mb-2 mb-md-0">
 					<!-- <div class="btn-group mr-2">
 						<button class="btn btn-sm btn-outline-secondary">Share</button>
@@ -156,18 +155,19 @@
 				<table class="table table-striped table-sm">
 					<thead>
 						<tr>
-							<th>품명</th>
-							<th>버린 일자</th>
-							<th>포인트</th>
+							<th id="product">품명</th>
+							<th id="time">버린 일자</th>
+							<th id="point">포인트</th>
 						</tr>
 					</thead>
 					<tbody>
 						<%while (rs1.next()) {
-								String time=rs1.getString(2).substring(0, 16);%>
+								String time=rs1.getString(2).substring(0, 16);
+								time=time.substring(2,4)+"/"+time.substring(5,7)+"/"+time.substring(8,10)+" "+time.substring(11,16);%>
 						<tr>
-							<td><%=rs1.getString(1)%></td>
-							<td><%=time%></td>
-							<td><%=rs1.getString(3)%></td>
+							<td id="product"><%=rs1.getString(1)%></td>
+							<td id="time"><%=time%></td>
+							<td id="point"><%=rs1.getString(3)%></td>
 						</tr>
 						<%}%>
 					</tbody>
